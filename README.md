@@ -1,0 +1,9 @@
+# Dashboard
+A Dashboard where you can organise your favoirite emails, news. weather, youtube etc.
+The user can organise or move the widgets as he wishes.
+Developed with Node.js, Express, HTML, CSS.
+
+To run the project exectue `docker-compose build && docker-compose up`
+The project runs on `http://localhost:8080/`
+![alt text](https://raw.github.com/joankabello/Epicture/master/sc1.png)
+![alt text](https://raw.github.com/joankabello/Epicture/master/sc2.png)
