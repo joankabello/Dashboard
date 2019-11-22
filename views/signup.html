@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link href="https://joankabello.github.io/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://joankabello.github.io/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <body style=" background-image: url('https://i.pinimg.com/originals/74/43/a3/7443a31b6a19e5630b94a6538ff9bdd1.gif');">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <center>
+    <div style="align-content: center;">
+    <img src="https://www.bathtub2boardroom.com/wp-content/uploads/2017/04/Dashboard-R-Logo-header.png">
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="row">
+      <form class="col s12" action="/signup" method="post">
+        <div class="row"  style="width: 30%;">
+          <div class="input-field col s12">
+            <input id="first_name" type="text" class="validate form-control" name="username">
+            <label for="first_name">Username</label>
+          </div>
+        </div>
+        <div class="row"  style="width: 30%;">
+          <div class="input-field col s12">
+            <input id="password" type="password" class="validate form-control" name="password">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row"  style="width: 30%;">
+          <div class="input-field col s12">
+            <input id="email" type="email" class="validate form-control" name="email">
+            <label for="email">Email</label>
+          </div>
+        </div>
+        <div id="SignUp">
+            <a href="/login" class="w3-button w3-blue"><i class="fa fa-sign-in" style="margin-right: 8px;">Sign Up</i></a>
+        </div>
+      </form>
+    </div>
+
+    <p>Already have an account? <a href="/login">Login</a></p>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <!--
+    <script>
+    $('#register').click(function () {
+      var username = $('#first_name').val();
+      var passw = $('#password').val();
+      var email = $('#email').val();
+      $.ajax({
+        type: "GET",
+        url: "/api/register",
+        crossDomain: true,
+        data: {
+          username: username,
+          password: passw,
+          email: email
+        },
+        success: function( result ) {
+          console.log("here");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.console.log("error");
+        }
+      });
+    });
+    </script>
+  -->
+</center>
+  </body>
+</html>

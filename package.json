@@ -1,0 +1,39 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.0",
+    "express": "^4.17.1",
+    "method-override": "^2.3.5",
+    "async": "^1.5.0",
+    "mongoose": "~4.13.1",
+    "passport": "~0.3.2",
+    "passport-local": "~1.0.0",
+    "passport-google-oauth2": "0.2.0",
+    "passport-facebook": "~1.0.2",
+    "passport-twitter": "~1.0.2",
+    "connect-flash": "~0.1.1",
+    "morgan": "~1.7.0",
+    "express-session": "~1.14.1",
+    "bcrypt-nodejs": "latest",
+    "ejs": "^2.7.1",
+    "interactjs": "^1.6.3",
+    "layout-grid": "^2.2.0",
+    "materialize-css": "^1.0.0-rc.2",
+    "request": "^2.81.0",
+    "jsonwebtoken": "^8.1.1",
+    "@microsoft/microsoft-graph-client": "^1.0.0",
+    "hbs": "~4.0.1",
+    "dotenv": "^5.0.0",
+    "simple-oauth2": "^1.5.0"
+  }
+}

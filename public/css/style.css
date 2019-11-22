@@ -1,0 +1,193 @@
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 29%;
+  padding: 0 50px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+  margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 105%;
+    height: 105%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10%;
+  margin-top: 3%;
+}
+#drag-1, #drag-2 {
+  color: white;
+  border-radius: 0.75em;
+    touch-action: none;
+  user-select: none;
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+}
+
+box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10%;
+}
+
+.box select {
+  background-color: #E64A19;
+  color: white;
+  padding: 12px;
+  width: 250px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.box::before {
+  content: "\f13a";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 30px;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 10%;
+}
+
+.button3 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid darkred;
+}
+
+.button3:hover {
+  background-color: darkred;
+  color: white;
+}
+
+select {
+  color: white;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: darkred;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  background: darkred;
+  overflow: hidden;
+  border-radius: .25em;
+}
+select {
+  flex: 1;
+  padding: 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background:darkred;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #E64A19;
+}
+
+.form-control {
+  transition: .25s border ease-in-out;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent;
+  color: black;
+  border: 0;
+  border-bottom: 2px solid darkred;
+  font-size: 20px;
+}
+
+p {
+  color: #E64A19;
+}

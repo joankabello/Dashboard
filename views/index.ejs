@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="/api/exchange.js"></script>
+  <style>
+    .hidden {
+      display: none;
+    }
+
+    iframe {
+      width: 100%;
+      border: 0;
+      min-height: 80%;
+      height: 600px;
+      display: flex;
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+    <a href="/logout" class="w3-button w3-blue"><i class="fa fa-sign-out-alt" style="margin-right: 8px;"></i>Log Out</a>
+  <div class="row">
+
+      <div class="draggable">
+
+    <div class="column">
+        <div class="card">
+          <img alig="center" src="https://cdn3.iconfinder.com/data/icons/social-icons-5/606/YouTube.png" width="90px"
+            height="80px">
+          <form id="yt-form">
+            <p><input type="text" class="form-control" id="keyword-input" placeholder="Enter keyword" required></p>
+            <p><input type="number" class="form-control" id="maxresult-input" placeholder="Max" min="1" max="50"
+                required></p>
+            <p>
+
+              <div class="select" id="slct">
+                <select style="color: white;" id="order-input" required>
+                  <option style="color: white;" value="">--SELECT ORDER--</option>
+                  <option style="color: white;" value="date">Date</option>
+                  <option style="color: white;" value="rating">Rating</option>
+                  <option style="color: white;" value="relevance">Relevance</option>
+                  <option style="color: white;" value="title">Title</option>
+                  <option style="color: white;" value="viewCount" selected>View Count</option>
+                </select>
+              </div>
+            </p>
+            <p>
+              <input class="button button3" type="submit" value="Submit">
+            </p>
+            <p>
+              <button class="button button3" value="Refresh Page" onClick="window.location.reload();">Clear All</button>
+            </p>
+          </form>
+          <div id="videoListContainer"></div>
+          <script src="https://apis.google.com/js/api.js"></script>
+          <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+          <script src="../fancybox/fancybox.js"></script>
+          <script src="/youtube/youtube.js">
+          </script>
+          <script src="/interact/interact.js"></script>
+        </div>
+      </div>
+    </div>
+        <div class="column">
+            <div class="w3-container">
+            <div class="draggable">
+              <div class="card" style='align-content: center;'>
+              <img src="https://i.pinimg.com/564x/ca/d1/6d/cad16df642dd90e69361bdaa7c44d43e.jpg" width="100px" height="50px"/>
+              <br></br>
+                <a href="#compose-modal" data-toggle="modal" id="compose-button"
+                  class="btn btn-primary pull-right hidden">Compose</a>
+                <button id="authorize-button" class="btn btn-primary hidden">Authorize</button>
+              
+
+                <table class="table table-striped table-inbox hidden">
+                  <thead>
+                    <tr>
+                      <th>From</th>
+                      <th>Subject</th>
+                      <th>Date/Time</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+ 
+
+              <div class="modal fade" id="compose-modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title">Compose</h4>
+                    </div>
+                    <form onsubmit="return sendEmail();">
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <input type="email" class="form-control" id="compose-to" placeholder="To" required />
+                        </div>
+    
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="compose-subject" placeholder="Subject" required />
+                        </div>
+    
+                        <div class="form-group">
+                          <textarea class="form-control" id="compose-message" placeholder="Message" rows="10"
+                            required></textarea>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" id="reply-button" class="btn btn-primary">Send</button>
+                      </div>
+                    </form>
+                    
+                  </div>
+                  
+                </div>
+                
+              </div>
+  
+              <div class="modal fade" id="reply-modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title">Reply</h4>
+                    </div>
+                    <form onsubmit="return sendReply();">
+                      <input type="hidden" id="reply-message-id" />
+    
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="reply-to" disabled />
+                        </div>
+    
+                        <div class="form-group">
+                          <input type="text" class="form-control disabled" id="reply-subject" disabled />
+                        </div>
+    
+                        <div class="form-group">
+                          <textarea class="form-control" id="reply-message" placeholder="Message" rows="10"
+                            required></textarea>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" id="reply-button" class="btn btn-primary">Send</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+      
+              </div>
+            </div>
+          </div>  
+    
+          <div class="draggable">
+              <div class="column">
+                <div class="card">
+                  <div align="center" id="openweathermap-widget-15"></div>
+                  <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = []; window.myWidgetParam.push({ id: 15, cityid: '3183875', appid: '98a8690c980b6cd6bc84090eae2de8ab', units: 'metric', containerid: 'openweathermap-widget-15', }); (function () { var script = document.createElement('script'); script.async = true; script.charset = "utf-8"; script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js"; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s); })();</script>
+                  </br>
+        
+                    <input name="city" type="text" class="form-control" placeholder="Enter a City Here" id="city" required>
+        
+                    <button style="margin-top: 5%;" class="button button3" id="weather_get">Get result</button>
+        
+                  <br>
+                  <p id="weather_result"></p>
+                  <script>
+                  $('#weather_get').click(function(){
+                    const apiKey = '98a8690c980b6cd6bc84090eae2de8ab';
+                    const city = $('#city').val();
+        
+                    $.ajax({
+                      url: 'http://api.openweathermap.org/data/2.5/weather?q='+city+'&units=metric&appid=98a8690c980b6cd6bc84090eae2de8ab',
+                      type: 'GET',
+                      success: function(res) {
+                        console.log(res)
+                        if (res.main.temp == undefined) {
+                          $('#weather_result').text("Error, please try again");
+                        }
+                        else {
+                          $('#weather_result').text("It's "+res.main.temp+" °C degrees");
+                          console.log("ok");
+                          console.log(res.main.temp);
+                        }
+                      },
+                      error: function() {
+                        $('#weather_result').text("Error, please try again");
+                        console.log("error")
+                      }
+                    });
+                  });
+                  </script>
+                </div>
+        
+              </div>
+            </div>
+    <div class="draggable">
+        <div class="column">
+          <div class="card">
+            <img src="https://answers.syr.edu/download/attachments/31588367/office-365-top.png?version=1&modificationDate=1527603599000&api=v2" style="width: 250px;
+            height: 70px;
+            "/>
+            <br></br>
+              <a class="button button3" href='/microhome'>Go to Microsoft dashboard</a>
+          </div>
+        </div>
+        </div>
+        <div class="draggable">
+
+          <div class="column">
+              <div class="card">
+                <form role="form" id="convertForm">
+                  <div class="form-group">
+                      <label for="inputAmount">Amount:</label>
+                      <input type="text" class="form-control" id="inputAmount" placeholder="Enter currency amount" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputFromCurrency">Currency I Have:</label>
+                      <select class="form-control" id="inputFromCurrency" placeholder="e.g. USD" required></select>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputToCurrency">Currency I Want:</label>
+                      <select class="form-control" id="inputToCurrency" placeholder="e.g. USD" required></select>
+                  </div>
+  
+                  <div id="conversion" class="jumbotron">
+                  </div>
+  
+                  <div class="text-right">
+                      <button type="submit" class="btn btn-primary btn-block">Convert</button>
+                  </div>
+              </form>
+              </div>
+            </div>
+          </div>
+  </div>
+  <script src="js/jquery-3.4.1.min.js"></script>
+              
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+  <script type="text/javascript" src="/../api/gmail.js"></script>
+
+  <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
+</body>
+
+</html>
